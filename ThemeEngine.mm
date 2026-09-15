@@ -1,5 +1,6 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <objc/runtime.h>
 
 static NSDictionary *WTThemeAssets;
 
@@ -23,10 +24,6 @@ __attribute__((constructor))
 static void WTInitialize(void) {
     WTLoadTheme();
 }
-
-@interface UIImage (WeChatThemeEngine)
-+ (UIImage *)WT_originalImageNamed:(NSString *)name;
-@end
 
 @implementation UIImage (WeChatThemeEngine)
 
@@ -56,3 +53,6 @@ static void WTInitialize(void) {
 }
 
 @end
+
+
+
