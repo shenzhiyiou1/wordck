@@ -1,0 +1,45 @@
+{
+  "name": "Dark Green",
+  "version": "0.1.0",
+  "compatibility": {
+    "bundle_id": "com.tencent.xin",
+    "min_version": "8.0.76",
+    "max_version": "8.0.76"
+  },
+  "mode": "dark",
+  "colors": {
+    "accent": "#31C48D",
+    "background": "#0B1210",
+    "surface": "#111816",
+    "textPrimary": "#ECFDF5",
+    "textSecondary": "#94A3B8"
+  },
+  "assets": {
+    "ChatRoom_Bubble_Text_Sender_Green": {
+      "replace": "assets/ChatRoom_Bubble_Text_Sender_Green@3x.png"
+    },
+    "ChatRoom_Bubble_Text_Sender_Green_HL": {
+      "replace": "assets/ChatRoom_Bubble_Text_Sender_Green_HL@3x.png"
+    },
+    "ChatRoom_Bubble_Text_Receiver_White": {
+      "replace": "assets/ChatRoom_Bubble_Text_Receiver_White@3x.png"
+    },
+    "ChatRoom_Bubble_Text_Receiver_White_HL": {
+      "replace": "assets/ChatRoom_Bubble_Text_Receiver_White_HL@3x.png"
+    },
+    "Toolbar_Chat_Input_BG": {
+      "replace": "assets/Toolbar_Chat_Input_BG.png"
+    },
+    "Material_NavigationBar": {
+      "replace": "assets/Material_NavigationBar.png"
+    },
+    "Material_Toolbar": {
+      "replace": "assets/Material_Toolbar.png"
+    }
+  },
+  "runtime": {
+    "load_order": "startup",
+    "fallback_to_original": true,
+    "live_reload": false
+  }
+}

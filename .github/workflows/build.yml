@@ -1,0 +1,65 @@
+name: Build WeChat Theme Engine
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-14
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install build dependencies
+        run: |
+          brew update
+          brew install dpkg ldid xz make
+
+      - name: Set up Theos
+        run: |
+          git clone --recursive https://github.com/theos/theos.git "$HOME/theos"
+          echo "THEOS=$HOME/theos" >> "$GITHUB_ENV"
+
+      - name: Build non-jailbroken dylib
+        run: |
+          mkdir -p build
+          xcrun --sdk iphoneos clang \
+            -arch arm64 \
+            -miphoneos-version-min=15.0 \
+            -fobjc-arc \
+            -dynamiclib \
+            -framework Foundation \
+            -framework UIKit \
+            ThemeEngine.mm \
+            -o build/WeChatThemeEngine.dylib
+          codesign --force --sign - build/WeChatThemeEngine.dylib
+
+      - name: Build jailbroken deb package
+        run: |
+          make package FINALPACKAGE=1
+
+      - name: Collect artifacts
+        run: |
+          mkdir -p artifacts
+          cp build/WeChatThemeEngine.dylib artifacts/
+          find packages -type f -name '*.deb' -exec cp {} artifacts/ \;
+
+      - name: Upload dylib artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WeChatThemeEngine-dylib
+          path: build/WeChatThemeEngine.dylib
+          if-no-files-found: error
+
+      - name: Upload deb artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: WeChatThemeEngine-deb
+          path: artifacts/*.deb
+          if-no-files-found: error

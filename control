@@ -1,0 +1,8 @@
+Package: com.local.wechatthemeengine
+Name: WeChat Theme Engine
+Version: 0.1.0
+Architecture: iphoneos-arm64
+Description: WeChat theme engine for authorized local testing
+Maintainer: Local
+Author: Local
+Section: Tweaks
