@@ -23,7 +23,7 @@ jobs:
 
       - name: Set up Theos
         run: |
-          git clone --recursive https://github.com/theos/theos.git "$HOME/theos"
+          git clone --recursive https://github.com/theos/theos.git /Users/runner/theos
           echo "THEOS=$HOME/theos" >> "$GITHUB_ENV"
 
       - name: Build non-jailbroken dylib
@@ -64,4 +64,5 @@ jobs:
           name: WeChatThemeEngine-deb
           path: artifacts/*.deb
           if-no-files-found: error
+
 
