@@ -34,6 +34,7 @@ jobs:
             -miphoneos-version-min=15.0 \
             -fobjc-arc \
             -dynamiclib \
+            -lc++abi \
             -framework Foundation \
             -framework UIKit \
             ThemeEngine.mm \
@@ -63,3 +64,4 @@ jobs:
           name: WeChatThemeEngine-deb
           path: artifacts/*.deb
           if-no-files-found: error
+
