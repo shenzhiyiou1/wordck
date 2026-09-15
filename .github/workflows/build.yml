@@ -26,7 +26,7 @@ jobs:
             -dynamiclib \
             -lc++abi \
             -framework Foundation \
-            -framework UIKit \
+            -framework UIKit \n            -framework UniformTypeIdentifiers \
             ThemeEngine.mm \
             -o build/WeChatThemeEngine.dylib
           codesign --force --sign - build/WeChatThemeEngine.dylib
@@ -37,3 +37,4 @@ jobs:
           name: WeChatThemeEngine-dylib
           path: build/WeChatThemeEngine.dylib
           if-no-files-found: error
+
