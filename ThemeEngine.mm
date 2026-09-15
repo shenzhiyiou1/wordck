@@ -1,6 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 
 static NSDictionary *WTThemeAssets;
 static NSMutableDictionary *WTThemeMeta;
@@ -91,7 +92,7 @@ static UIViewController *WTTopViewController(void) {
     return controller;
 }
 
-@interface WTThemePickerController : UIViewController
+@interface WTThemePickerController : UIViewController <UITableViewDataSource, UITableViewDelegate, UIDocumentPickerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @end
 
@@ -113,7 +114,7 @@ static UIViewController *WTTopViewController(void) {
 }
 
 - (NSArray *)themes {
-    NSMutableArray *result = [[WTThemeDirectories(WTImportedThemesPath()) mutableCopy] autorelease];
+    NSMutableArray *result = [WTThemeDirectories(WTImportedThemesPath()) mutableCopy];
     for (NSString *name in WTThemeDirectories(WTBundleThemesPath())) {
         if (![result containsObject:name]) [result addObject:name];
     }
@@ -121,7 +122,7 @@ static UIViewController *WTTopViewController(void) {
 }
 
 - (void)importTheme:(id)sender {
-    UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initWithDocumentTypes:@[@"public.folder"] inMode:UIDocumentPickerModeOpen];
+    UIDocumentPickerViewController *picker = [[UIDocumentPickerViewController alloc] initForOpeningContentTypes:@[[UTType typeWithIdentifier:@"public.folder"]] asCopy:YES];
     picker.delegate = self;
     [self presentViewController:picker animated:YES completion:nil];
 }
@@ -225,3 +226,5 @@ static UIViewController *WTTopViewController(void) {
 }
 
 @end
+
+
