@@ -3,7 +3,7 @@
 #import <objc/runtime.h>
 #import <UniformTypeIdentifiers/UniformTypeIdentifiers.h>
 static NSDictionary *WTThemeAssets;
-static NSMutableDictionary *WTThemeMeta;
+static NSDictionary *WTThemeMeta;
 static NSString *WTStoragePath(void) {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     return [paths.firstObject stringByAppendingPathComponent:@"WeChatThemeEngine"];
@@ -254,3 +254,4 @@ static UIViewController *WTTopViewController(void) {
     return [self WT_themedImageNamed:name];
 }
 @end
+
